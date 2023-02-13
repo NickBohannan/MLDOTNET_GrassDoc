@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Microsoft.ML" />
+    <None Remove="Microsoft.ML.ImageAnalytics" />
+    <None Remove="Microsoft.ML.TensorFlow" />
+    <None Remove="Repositories\" />
+    <None Remove="Interfaces\" />
+    <None Remove="Models\" />
+    <None Remove="Configuration\" />
+    <None Remove="GeneratedMLModels\" />
+    <None Remove="SciSharp.TensorFlow.Redist" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="2.0.1" />
+    <PackageReference Include="Microsoft.ML.TensorFlow" Version="2.0.1" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.10.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Models\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="GeneratedMLModels\" />
+  </ItemGroup>
+</Project>
