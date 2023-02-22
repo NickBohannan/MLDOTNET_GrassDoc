@@ -25,7 +25,7 @@ namespace GrassDoc_API.Controllers
             _logger = logger;
         }
 
-        [HttpPost("")]
+        [HttpPost]
         public async Task<ActionResult<string>> PostSingleImageForDiseaseClassification(IFormFile submittedImage)
         {
             _logger.Log(LogLevel.Information, "Image submitted... attempting classification.");
