@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GrassDocAPI.Repositories;
+using GrassDocML.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using GrassDocML;
-using Microsoft.AspNetCore.Http;
-using System.IO;
-using GrassDocML.Models;
-using Microsoft.Extensions.ML;
 
 namespace GrassDoc_API.Controllers
 {
@@ -16,41 +13,28 @@ namespace GrassDoc_API.Controllers
     [Route("api/[controller]")]
     public class DiagnoseGrassController : ControllerBase
     {
-        private readonly PredictionEnginePool<ImageData, ImagePrediction> _predictionEnginePool;
         private readonly ILogger<DiagnoseGrassController> _logger;
+        private IDiagnoseGrassRepository _diagnoseGrassRepository;
 
-        public DiagnoseGrassController(PredictionEnginePool<ImageData, ImagePrediction> predictionEnginePool, ILogger<DiagnoseGrassController> logger)
+        public DiagnoseGrassController(ILogger<DiagnoseGrassController> logger, IDiagnoseGrassRepository diagnoseRepository)
         {
-            _predictionEnginePool = predictionEnginePool;
             _logger = logger;
+            _diagnoseGrassRepository = diagnoseRepository;
         }
 
         [HttpPost]
         public async Task<ActionResult<string>> PostSingleImageForDiseaseClassification(IFormFile submittedImage)
         {
             _logger.Log(LogLevel.Information, "Image submitted... attempting classification.");
+            ImagePrediction prediction = await _diagnoseGrassRepository.DiagnoseGrassImage(submittedImage);
 
-            if (submittedImage.Length > 0)
+            if (prediction != null)
             {
-                var filePath = Path.GetTempFileName();
-
-                using (var stream = System.IO.File.Create(filePath))
-                {
-                    await submittedImage.CopyToAsync(stream);
-                }
-
-                ImagePrediction prediction = _predictionEnginePool.Predict<ImageData, ImagePrediction>(modelName: "GrassClassificationModel", example: new ImageData {
-                    ImagePath = filePath,
-                    Label = "Submitted Image"
-                });
-
                 _logger.Log(LogLevel.Information, $"Prediction complete.");
-
                 return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} ");
             }
 
             return BadRequest();
-
         }
     }
 }

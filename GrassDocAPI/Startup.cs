@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GrassDocAPI.Repositories;
+using GrassDocML.Configuration;
+using GrassDocML.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.ML;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Logging;
-using GrassDocML.Models;
-using System.Diagnostics;
-using GrassDocML.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace GrassDocAPI
 {
@@ -34,6 +24,8 @@ namespace GrassDocAPI
         {
             services.AddControllers();
             services.AddSwaggerGen();
+            services.AddLogging();
+            services.AddSingleton<IDiagnoseGrassRepository, DiagnoseGrassRepository>();
             services.AddPredictionEnginePool<ImageData, ImagePrediction>()
                 .FromFile(modelName: "GrassClassificationModel", filePath: PathConfiguration.ExistingPlantModel, watchForChanges: true);
         }
@@ -49,11 +41,8 @@ namespace GrassDocAPI
             }
 
             app.UseHttpsRedirection();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
