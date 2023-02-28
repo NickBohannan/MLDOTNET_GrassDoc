@@ -25,7 +25,6 @@ namespace GrassDocML.Repositories
         {
             // Develop the pipline
             IEstimator<ITransformer> pipeline = mlContext.Transforms.LoadImages(outputColumnName: "input", imageFolder: PathConfiguration.RiceFolder, inputColumnName: nameof(ImageData.ImagePath))
-            // The image transforms the images into the model's expected format.
             .Append(mlContext.Transforms.ResizeImages(outputColumnName: "input", imageWidth: ModelSettings.ImageWidth, imageHeight: ModelSettings.ImageHeight, inputColumnName: "input"))
             .Append(mlContext.Transforms.ExtractPixels(outputColumnName: "input", interleavePixelColors: ModelSettings.ChannelsLast, offsetImage: ModelSettings.Mean))
             .Append(mlContext.Model.LoadTensorFlowModel(PathConfiguration.InceptionTensorFlowModel).ScoreTensorFlowModel(outputColumnNames: new[] { "softmax2_pre_activation" }, inputColumnNames: new[] { "input" }, addBatchDimensionInput: true))

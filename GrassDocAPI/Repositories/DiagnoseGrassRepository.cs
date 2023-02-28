@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GrassDocML.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.ML;
+using GrassDocAPI.Interfaces;
 
 namespace GrassDocAPI.Repositories
 {

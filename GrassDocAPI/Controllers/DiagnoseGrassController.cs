@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using GrassDocAPI.Repositories;
+using GrassDocAPI.Interfaces;
 using GrassDocML.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,10 +16,10 @@ namespace GrassDoc_API.Controllers
         private readonly ILogger<DiagnoseGrassController> _logger;
         private IDiagnoseGrassRepository _diagnoseGrassRepository;
 
-        public DiagnoseGrassController(ILogger<DiagnoseGrassController> logger, IDiagnoseGrassRepository diagnoseRepository)
+        public DiagnoseGrassController(ILogger<DiagnoseGrassController> logger, IDiagnoseGrassRepository diagnoseGrassRepository)
         {
             _logger = logger;
-            _diagnoseGrassRepository = diagnoseRepository;
+            _diagnoseGrassRepository = diagnoseGrassRepository;
         }
 
         [HttpPost]
