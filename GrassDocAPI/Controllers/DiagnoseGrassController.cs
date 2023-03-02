@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace GrassDoc_API.Controllers
+namespace GrassDocAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -34,7 +34,7 @@ namespace GrassDoc_API.Controllers
                 return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} ");
             }
 
-            return BadRequest();
+            return BadRequest("Prediction unable to be generated due to image issue.");
         }
     }
 }

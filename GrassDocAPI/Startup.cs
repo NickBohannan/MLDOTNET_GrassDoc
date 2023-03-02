@@ -1,4 +1,5 @@
 ﻿using GrassDocAPI.Repositories;
+using GrassDocAPI.Interfaces;
 using GrassDocML.Configuration;
 using GrassDocML.Models;
 using Microsoft.AspNetCore.Builder;
@@ -26,6 +27,7 @@ namespace GrassDocAPI
             services.AddSwaggerGen();
             services.AddLogging();
             services.AddSingleton<IDiagnoseGrassRepository, DiagnoseGrassRepository>();
+            services.AddSingleton<IValidatorRepository, ValidatorRepository>();
             services.AddPredictionEnginePool<ImageData, ImagePrediction>()
                 .FromFile(modelName: "GrassClassificationModel", filePath: PathConfiguration.ExistingPlantModel, watchForChanges: true);
         }
