@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrassDocAPI", "GrassDocAPI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrassDocML", "GrassDocML\GrassDocML.csproj", "{F8AF38AB-DD2F-4E45-94C2-E2F645E2A551}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrassDocTests", "GrassDocTests\GrassDocTests.csproj", "{2FB51459-0E51-44E0-8B91-55FA8EFF747D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F8AF38AB-DD2F-4E45-94C2-E2F645E2A551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8AF38AB-DD2F-4E45-94C2-E2F645E2A551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8AF38AB-DD2F-4E45-94C2-E2F645E2A551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FB51459-0E51-44E0-8B91-55FA8EFF747D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FB51459-0E51-44E0-8B91-55FA8EFF747D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FB51459-0E51-44E0-8B91-55FA8EFF747D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FB51459-0E51-44E0-8B91-55FA8EFF747D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
