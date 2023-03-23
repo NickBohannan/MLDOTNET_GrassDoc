@@ -31,7 +31,7 @@ namespace GrassDocAPI.Controllers
             if (prediction != null)
             {
                 _logger.Log(LogLevel.Information, $"Prediction complete.");
-                return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()} ");
+                return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()}");
             }
 
             return BadRequest("Prediction unable to be generated due to image issue.");

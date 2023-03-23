@@ -59,7 +59,7 @@ namespace GrassDocTests
 
             // Assert
             var result = actionResult.Result as OkObjectResult;
-            Assert.Equal(result?.Value, $"Image: {mockImagePrediction.Object.ImagePath} predicted as: {mockImagePrediction.Object.PredictedLabelValue} with score: {mockImagePrediction.Object.Score.Max()}");
+            Assert.Equal(result?.Value?.ToString(), $"Image: {mockImagePrediction.Object.ImagePath} predicted as: {mockImagePrediction.Object.PredictedLabelValue} with score: {mockImagePrediction.Object.Score.Max()}");
             Assert.IsType<ActionResult<string>>(actionResult);
         }
     }
