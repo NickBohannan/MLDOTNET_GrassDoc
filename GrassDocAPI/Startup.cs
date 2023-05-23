@@ -29,7 +29,7 @@ namespace GrassDocAPI
             services.AddSingleton<IDiagnoseGrassRepository, DiagnoseGrassRepository>();
             services.AddSingleton<IValidatorRepository, ValidatorRepository>();
             services.AddPredictionEnginePool<ImageData, ImagePrediction>()
-                .FromFile(modelName: "GrassClassificationModel", filePath: PathConfiguration.ExistingPlantModel, watchForChanges: true);
+                .FromFile(modelName: "GrassClassificationModel", filePath: "/Users/nickbohannan/projects/GrassDoc/GrassDocML/GeneratedMLModels/model.zip", watchForChanges: true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

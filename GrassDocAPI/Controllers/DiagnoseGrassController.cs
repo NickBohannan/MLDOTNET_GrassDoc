@@ -27,16 +27,13 @@ namespace GrassDocAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> PostSingleImageForDiseaseClassification(IFormFile submittedImage)
         {
-            if (ModelState.IsValid)
-            {
-                _logger.Log(LogLevel.Information, "Image submitted... attempting classification.");
-                ImagePrediction prediction = await _diagnoseGrassRepository.DiagnoseGrassImage(submittedImage);
+            _logger.Log(LogLevel.Information, "Image submitted... attempting classification.");
+            ImagePrediction prediction = await _diagnoseGrassRepository.DiagnoseGrassImage(submittedImage);
 
-                if (prediction != null)
-                {
-                    _logger.Log(LogLevel.Information, $"Prediction complete.");
-                    return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()}");
-                }
+            if (prediction != null)
+            {
+                _logger.Log(LogLevel.Information, $"Prediction complete.");
+                return Ok($"Image: {Path.GetFileName(prediction.ImagePath)} predicted as: {prediction.PredictedLabelValue} with score: {prediction.Score.Max()}");
             }
             
             return BadRequest("Prediction unable to be generated due to image issue.");

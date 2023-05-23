@@ -21,12 +21,6 @@ namespace GrassDocAPI.Repositories
 
         public async Task<ImagePrediction> DiagnoseGrassImage(IFormFile submittedImage)
         {
-            // if image is null or not an image, return null
-            if (submittedImage.Length == 0 || !_validatorRepository.IsImage(submittedImage))
-            {
-                return null;
-            }
-
             var filePath = Path.GetTempFileName();
 
             using (var stream = File.Create(filePath))
