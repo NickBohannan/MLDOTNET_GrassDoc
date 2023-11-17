@@ -10,7 +10,7 @@ using GrassDocML.Configuration;
 
 namespace GrassDocML.Repositories
 {
-    public class ClassificationRepository : IModelGenerator
+    public class ClassificationRepository : IClassificationRepository
     {
         struct ModelSettings
         {

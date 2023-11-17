@@ -3,7 +3,7 @@ using Microsoft.ML;
 
 namespace GrassDocML.Interfaces
 {
-    public interface IModelGenerator
+    public interface IClassificationRepository
     {
         struct ModelSettings { }
         ITransformer GenerateModel(MLContext mlContext);   
